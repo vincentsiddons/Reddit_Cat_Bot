@@ -82,6 +82,7 @@ class Model:
                 loss_list.append(loss.item())
                 count += 1
                 count_list.append(count)
+            valid_model()
         with open(rel_path + "\\clip_model.pkl", "wb") as pickle_file:
             pickle.dump((self.model), pickle_file)
         return count_list, loss_list
@@ -89,7 +90,7 @@ class Model:
     #Returns counts and validation losses lists
     def valid_model(self):
         device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.model.to(device)
+        #self.model.to(device)
         #get path of where images are
         abs_path = os.path.abspath(__file__)
         rel_path = abs_path[:abs_path.index("Model.py")] 
